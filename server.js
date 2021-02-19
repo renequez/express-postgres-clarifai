@@ -7,13 +7,23 @@ import { handleSignIn } from './controllers/signin.js';
 import { handleProfileGet } from './controllers/profile.js';
 import { handleApiCall, handleImage } from './controllers/image.js';
 
+// const db = knex({
+// 	client: 'pg',
+// 	connection: {
+// 		host: 'localhost',
+// 		user: 'postgres',
+// 		password: '1234',
+// 		database: 'facerecognition-db',
+// 	},
+// });
+
 const db = knex({
 	client: 'pg',
 	connection: {
-		host: 'localhost',
-		user: 'postgres',
-		password: '1234',
-		database: 'facerecognition-db',
+		connectionString: process.env.DATABASE_URL,
+		ssl: {
+			rejectUnauthorized: false,
+		},
 	},
 });
 
